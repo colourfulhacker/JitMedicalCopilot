@@ -31,10 +31,10 @@ export function AIResponseModal({ plan, isOpen, onClose }: AIResponseModalProps)
           </DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-6 p-6" data-testid="ai-response-content">
-          <div className="ai-response rounded-lg p-4 md:p-6 bg-gradient-to-r from-primary/10 to-accent/10 border-l-4 border-primary">
-            <h4 className="text-lg md:text-xl font-semibold mb-2 break-words" data-testid="plan-title">{plan.title}</h4>
-            <p className="text-muted-foreground mb-4 break-words" data-testid="plan-summary">{plan.summary}</p>
+        <div className="space-y-6" data-testid="ai-response-content">
+          <div className="rounded-lg p-6 bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20">
+            <h4 className="text-xl font-bold mb-3 text-foreground" data-testid="plan-title">{plan.title}</h4>
+            <p className="text-foreground/80 mb-6 text-base leading-relaxed" data-testid="plan-summary">{plan.summary}</p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               {plan.pricingInr && (
@@ -59,11 +59,11 @@ export function AIResponseModal({ plan, isOpen, onClose }: AIResponseModalProps)
           
           {aiResponse?.steps && (
             <div className="space-y-4">
-              <h5 className="text-lg font-semibold" data-testid="roadmap-title">Implementation Roadmap</h5>
+              <h5 className="text-xl font-bold text-foreground mb-4" data-testid="roadmap-title">Implementation Roadmap</h5>
               {aiResponse.steps.map((step, index) => (
-                <div key={index} className="border border-border rounded-lg p-4" data-testid={`step-${index}`}>
+                <div key={index} className="border border-border rounded-lg p-5 bg-card" data-testid={`step-${index}`}>
                   <div className="flex items-center justify-between mb-3">
-                    <h6 className="font-medium">{step.phase}</h6>
+                    <h6 className="font-semibold text-foreground">{step.phase}</h6>
                     <span className="text-sm bg-primary/10 text-primary px-2 py-1 rounded">
                       {step.duration}
                     </span>
@@ -71,8 +71,8 @@ export function AIResponseModal({ plan, isOpen, onClose }: AIResponseModalProps)
                   <ul className="space-y-2">
                     {step.tasks.map((task, taskIndex) => (
                       <li key={taskIndex} className="flex items-center space-x-2 text-sm">
-                        <i className="fas fa-check-circle text-emerald-500 text-xs"></i>
-                        <span>{task}</span>
+                        <i className="fas fa-check-circle text-emerald-500 text-sm flex-shrink-0 mt-0.5"></i>
+                        <span className="text-foreground/90">{task}</span>
                       </li>
                     ))}
                   </ul>
@@ -85,7 +85,7 @@ export function AIResponseModal({ plan, isOpen, onClose }: AIResponseModalProps)
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {aiResponse.risks && aiResponse.risks.length > 0 && (
                 <div data-testid="risk-assessment">
-                  <h5 className="text-lg font-semibold mb-3">Risk Assessment</h5>
+                  <h5 className="text-lg font-bold mb-3 text-foreground">Risk Assessment</h5>
                   <ul className="space-y-2">
                     {aiResponse.risks.map((risk, index) => (
                       <li key={index} className="flex items-start space-x-2 text-sm">
@@ -99,7 +99,7 @@ export function AIResponseModal({ plan, isOpen, onClose }: AIResponseModalProps)
               
               {aiResponse.success_metrics && aiResponse.success_metrics.length > 0 && (
                 <div data-testid="success-metrics">
-                  <h5 className="text-lg font-semibold mb-3">Success Metrics</h5>
+                  <h5 className="text-lg font-bold mb-3 text-foreground">Success Metrics</h5>
                   <ul className="space-y-2">
                     {aiResponse.success_metrics.map((metric, index) => (
                       <li key={index} className="flex items-start space-x-2 text-sm">

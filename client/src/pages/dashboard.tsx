@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Header } from "@/components/header";
-import { MetricsGrid } from "@/components/metrics-grid";
 import { AIPlanner } from "@/components/ai-planner";
-import { BusinessVerticals } from "@/components/business-verticals";
-import { RevenueAnalytics } from "@/components/revenue-analytics";
-import { CommunicationTools } from "@/components/communication-tools";
 import { AIResponseModal } from "@/components/ai-response-modal";
+import { Card } from "@/components/ui/card";
 import type { AiPlan, User } from "@shared/schema";
 
 interface RecentPlanCardProps {
@@ -16,20 +13,21 @@ interface RecentPlanCardProps {
 
 function RecentPlanCard({ plan, onClick }: RecentPlanCardProps) {
   const getVerticalInfo = (challengeId?: string) => {
-    // This would typically come from the challenge data
-    // For now, we'll use some heuristics based on the plan content
     if (plan.title.toLowerCase().includes("hospital") || plan.title.toLowerCase().includes("health")) {
       return { icon: "fas fa-heartbeat", color: "text-red-500", vertical: "HealthTech" };
     }
-    return { icon: "fas fa-code", color: "text-blue-500", vertical: "IT Development" };
+    if (plan.title.toLowerCase().includes("tech") || plan.title.toLowerCase().includes("development")) {
+      return { icon: "fas fa-code", color: "text-blue-500", vertical: "IT Development" };
+    }
+    return { icon: "fas fa-lightbulb", color: "text-amber-500", vertical: "Business" };
   };
 
   const verticalInfo = getVerticalInfo(plan.challengeId || undefined);
   const timeAgo = plan.createdAt ? new Date(plan.createdAt).toLocaleDateString() : "Recently";
 
   return (
-    <div 
-      className="ai-response rounded-lg p-4 cursor-pointer hover:bg-accent/50 transition-colors" 
+    <Card 
+      className="p-4 cursor-pointer hover:bg-accent/50 transition-all border-l-4 border-l-primary/20 hover:border-l-primary" 
       onClick={onClick}
       data-testid={`recent-plan-${plan.id}`}
     >
@@ -40,23 +38,20 @@ function RecentPlanCard({ plan, onClick }: RecentPlanCardProps) {
         </div>
         <span className="text-xs text-muted-foreground">{timeAgo}</span>
       </div>
-      <h4 className="font-medium mb-2">{plan.title}</h4>
-      <p className="text-sm text-muted-foreground mb-3">{plan.summary}</p>
-      <div className="flex items-center space-x-4 text-xs">
-        {plan.pricingInr && (
-          <span className="text-emerald-500">
-            <i className="fas fa-rupee-sign mr-1"></i>
-            ₹{(parseFloat(plan.pricingInr) / 100000).toFixed(1)}L Revenue Potential
-          </span>
-        )}
-        {plan.timeline && (
-          <span className="text-blue-500">
-            <i className="fas fa-calendar mr-1"></i>
-            {plan.timeline}
-          </span>
-        )}
+      <h4 className="font-semibold mb-2 text-foreground">{plan.title}</h4>
+      <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{plan.summary}</p>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-3 text-xs">
+          {plan.timeline && (
+            <span className="text-blue-600 dark:text-blue-400">
+              <i className="fas fa-calendar mr-1"></i>
+              {plan.timeline}
+            </span>
+          )}
+        </div>
+        <i className="fas fa-arrow-right text-xs text-muted-foreground"></i>
       </div>
-    </div>
+    </Card>
   );
 }
 
@@ -84,32 +79,34 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen" data-testid="dashboard-page">
+    <div className="min-h-screen bg-gradient-to-br from-background to-accent/20" data-testid="dashboard-page">
       <Header 
-        title="Executive Dashboard" 
-        subtitle="AI-powered business intelligence for your ventures" 
+        title="AI Business Assistant" 
+        subtitle="Generate instant solutions for your business challenges" 
       />
       
-      <div className="p-8 space-y-8">
-        {/* Metrics Overview */}
-        <MetricsGrid />
-
+      <div className="p-4 md:p-8 space-y-8">
         {/* AI Challenge Input & Recent Plans */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
           <AIPlanner onPlanGenerated={handlePlanGenerated} />
           
-          {/* Recent AI Responses */}
-          <div className="rounded-xl bg-card border border-border p-6" data-testid="recent-plans">
+          {/* Recent AI Solutions */}
+          <Card className="p-6" data-testid="recent-plans">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-semibold">Recent AI Plans</h3>
-              <button className="text-primary hover:text-primary/80 text-sm font-medium">
-                View All
-              </button>
+              <div>
+                <h3 className="text-lg font-semibold">Recent AI Solutions</h3>
+                <p className="text-sm text-muted-foreground">Your generated business plans</p>
+              </div>
+              {recentPlans.length > 0 && (
+                <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                  {recentPlans.length} plan{recentPlans.length !== 1 ? 's' : ''}
+                </span>
+              )}
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 max-h-96 overflow-y-auto">
               {recentPlans.length > 0 ? (
-                recentPlans.slice(0, 3).map((plan) => (
+                recentPlans.slice(0, 5).map((plan) => (
                   <RecentPlanCard 
                     key={plan.id} 
                     plan={plan} 
@@ -117,24 +114,52 @@ export default function Dashboard() {
                   />
                 ))
               ) : (
-                <div className="text-center py-8" data-testid="no-plans-message">
-                  <i className="fas fa-lightbulb text-4xl text-muted-foreground mb-4"></i>
-                  <p className="text-muted-foreground">No AI plans generated yet.</p>
-                  <p className="text-sm text-muted-foreground">Start by describing a business challenge above.</p>
+                <div className="text-center py-12" data-testid="no-plans-message">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                    <i className="fas fa-lightbulb text-2xl text-primary"></i>
+                  </div>
+                  <h4 className="text-lg font-medium mb-2">No plans generated yet</h4>
+                  <p className="text-muted-foreground mb-4">Start by selecting a category and describing your business challenge</p>
+                  <div className="text-xs text-muted-foreground">
+                    <i className="fas fa-arrow-left mr-2"></i>
+                    Use the AI planner on the left to get started
+                  </div>
                 </div>
               )}
             </div>
-          </div>
+          </Card>
         </div>
 
-        {/* Business Verticals Overview */}
-        <BusinessVerticals />
-
-        {/* Revenue Analytics & Pricing Models */}
-        <RevenueAnalytics />
-
-        {/* Communication Drafts & AI Tools */}
-        <CommunicationTools />
+        {/* Quick Start Guide */}
+        {recentPlans.length === 0 && (
+          <Card className="p-6 bg-gradient-to-r from-primary/5 to-accent/5 border-primary/20">
+            <div className="flex items-start space-x-4">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <i className="fas fa-rocket text-primary"></i>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-2">Welcome to AI Business Assistant</h3>
+                <p className="text-muted-foreground mb-4">
+                  Get instant, actionable business plans powered by AI. Simply describe your challenge and receive:
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                  <div className="flex items-center space-x-2">
+                    <i className="fas fa-chart-line text-emerald-500"></i>
+                    <span>Strategic roadmaps</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <i className="fas fa-target text-blue-500"></i>
+                    <span>Success metrics</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <i className="fas fa-shield-alt text-amber-500"></i>
+                    <span>Risk assessments</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+        )}
       </div>
 
       <AIResponseModal 
