@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import type { BusinessMetricsWithUSD } from "@/lib/types";
+import type { User } from "@shared/schema";
 
 interface MetricCardProps {
   title: string;
@@ -31,7 +32,7 @@ function MetricCard({ title, value, change, icon, color, testId }: MetricCardPro
 }
 
 export function MetricsGrid() {
-  const { data: user } = useQuery({
+  const { data: user } = useQuery<User>({
     queryKey: ["/api/user/current"],
   });
 
@@ -60,7 +61,7 @@ export function MetricsGrid() {
       <MetricCard
         title="Monthly Revenue"
         value={formatRevenue(metrics.monthlyRevenue)}
-        change="+12.5% from last month"
+        change="Updated monthly"
         icon="fas fa-rupee-sign"
         color="text-emerald-500"
         testId="metric-revenue"
@@ -69,7 +70,7 @@ export function MetricsGrid() {
       <MetricCard
         title="Active Clients"
         value={metrics.activeClients.toString()}
-        change="+8 new this week"
+        change="Active relationships"
         icon="fas fa-users"
         color="text-blue-500"
         testId="metric-clients"
@@ -78,7 +79,7 @@ export function MetricsGrid() {
       <MetricCard
         title="AI Plans Generated"
         value={metrics.plansGenerated.toString()}
-        change="+23 today"
+        change="Generated this month"
         icon="fas fa-brain"
         color="text-amber-500"
         testId="metric-plans"
@@ -87,7 +88,7 @@ export function MetricsGrid() {
       <MetricCard
         title="Compliance Score"
         value={`${metrics.complianceScore}%`}
-        change="Excellent status"
+        change="Current score"
         icon="fas fa-shield-alt"
         color="text-emerald-500"
         testId="metric-compliance"

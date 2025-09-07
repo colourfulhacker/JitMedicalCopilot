@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import type { BusinessMetricsWithUSD } from "@/lib/types";
+import type { User } from "@shared/schema";
 
 interface ITProject {
   id: string;
@@ -23,6 +24,7 @@ interface ITProject {
   team: number;
 }
 
+// Note: In production, these would come from project management systems
 const activeProjects: ITProject[] = [
   { id: "1", name: "Healthcare CRM SaaS", client: "MedTech Solutions", technology: "React, Node.js, PostgreSQL", status: "development", budget: "3500000", timeline: "6 months", team: 8 },
   { id: "2", name: "E-commerce Platform", client: "RetailCorp India", technology: "Next.js, MongoDB, AWS", status: "testing", budget: "2800000", timeline: "4 months", team: 6 },
@@ -36,6 +38,7 @@ const techStacks = [
   { id: "enterprise", name: "Enterprise System", stack: "Java + Spring + Oracle", description: "Large-scale enterprise application with high reliability" }
 ];
 
+// Note: In production, these would come from HR and project management systems
 const teamMembers = [
   { id: "1", name: "Rahul Kumar", role: "Senior Full Stack Developer", skills: "React, Node.js, AWS", status: "available" },
   { id: "2", name: "Priya Sharma", role: "Frontend Developer", skills: "React, TypeScript, Tailwind", status: "busy" },
@@ -52,7 +55,7 @@ export default function ITDevelopment() {
   const [selectedTechStack, setSelectedTechStack] = useState("");
   const { toast } = useToast();
 
-  const { data: user } = useQuery({
+  const { data: user } = useQuery<User>({
     queryKey: ["/api/user/current"],
   });
 

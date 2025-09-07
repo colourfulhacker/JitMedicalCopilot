@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Textarea } from "@/components/ui/textarea";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import type { User } from "@shared/schema";
 
 interface ComplianceItem {
   id: string;
@@ -106,7 +107,7 @@ export default function Compliance() {
   const [reportContext, setReportContext] = useState("");
   const { toast } = useToast();
 
-  const { data: user } = useQuery({
+  const { data: user } = useQuery<User>({
     queryKey: ["/api/user/current"],
   });
 

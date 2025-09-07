@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import type { BusinessMetricsWithUSD } from "@/lib/types";
+import type { User } from "@shared/schema";
 
 interface HealthTechProject {
   id: string;
@@ -20,12 +21,14 @@ interface HealthTechProject {
   clients: number;
 }
 
+// Note: In production, these would come from project management systems
 const mockProjects: HealthTechProject[] = [
   { id: "1", name: "Delhi Hospital Network", type: "B2B SaaS", status: "active", revenue: "2500000", clients: 15 },
   { id: "2", name: "Mumbai Labs Integration", type: "Custom Development", status: "planning", revenue: "1800000", clients: 8 },
   { id: "3", name: "Tier-2 City Expansion", type: "Market Expansion", status: "active", revenue: "3200000", clients: 22 }
 ];
 
+// Note: In production, these would come from compliance monitoring systems
 const complianceItems = [
   { id: "ndhm", name: "NDHM Compliance", status: "compliant", lastCheck: "2024-12-15", icon: "fas fa-check-circle text-emerald-500" },
   { id: "hipaa", name: "HIPAA Standards", status: "review", lastCheck: "2024-12-10", icon: "fas fa-exclamation-triangle text-amber-500" },
@@ -41,7 +44,7 @@ export default function HealthTech() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  const { data: user } = useQuery({
+  const { data: user } = useQuery<User>({
     queryKey: ["/api/user/current"],
   });
 

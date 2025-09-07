@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { CommunicationTools } from "@/components/communication-tools";
-import type { Communication } from "@shared/schema";
+import type { Communication, User } from "@shared/schema";
 
 interface CommunicationDraft {
   id: string;
@@ -19,6 +19,7 @@ interface CommunicationDraft {
   preview: string;
 }
 
+// Note: In production, these would come from the communications database
 const draftCommunications: CommunicationDraft[] = [
   {
     id: "1",

@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { BusinessMetricsWithUSD } from "@/lib/types";
+import type { User } from "@shared/schema";
 
 interface MetricCardProps {
   title: string;
@@ -65,7 +66,7 @@ const projections = [
 ];
 
 export default function Analytics() {
-  const { data: user } = useQuery({
+  const { data: user } = useQuery<User>({
     queryKey: ["/api/user/current"],
   });
 
@@ -96,7 +97,7 @@ export default function Analytics() {
           <MetricCard
             title="Total Monthly Revenue"
             value={metrics ? formatRevenue(metrics.monthlyRevenue) : "Loading..."}
-            change="+12.5% from last month"
+            change="Current month"
             icon="fas fa-rupee-sign"
             color="text-emerald-500"
           />
