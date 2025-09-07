@@ -73,7 +73,7 @@ export function AIPlanner({ onPlanGenerated }: AIPlannerProps) {
           </div>
           <div>
             <h3 className="text-lg font-semibold" data-testid="ai-planner-title">AI Business Planner</h3>
-            <p className="text-sm text-muted-foreground" data-testid="ai-planner-subtitle">Powered by Gemini AI</p>
+            <p className="text-sm text-muted-foreground" data-testid="ai-planner-subtitle">Smart Business Planning</p>
           </div>
         </div>
 

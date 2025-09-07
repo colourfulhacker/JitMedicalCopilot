@@ -18,7 +18,7 @@ function Router() {
   return (
     <div className="min-h-screen bg-background flex">
       <Sidebar />
-      <main className="ml-64 flex-1">
+      <main className="flex-1 lg:ml-64">
         <Switch>
           <Route path="/" component={Dashboard} />
           <Route path="/planner" component={AIPlanner} />

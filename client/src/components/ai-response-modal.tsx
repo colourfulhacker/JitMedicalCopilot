@@ -25,7 +25,7 @@ export function AIResponseModal({ plan, isOpen, onClose }: AIResponseModalProps)
             <div>
               <span>AI Generated Action Plan</span>
               <p className="text-sm font-normal text-muted-foreground">
-                Powered by Gemini AI
+                Intelligent Action Planning
               </p>
             </div>
           </DialogTitle>
