@@ -108,7 +108,7 @@ export default function Communications() {
   const [selectedDraft, setSelectedDraft] = useState<CommunicationDraft | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const { data: user } = useQuery({
+  const { data: user } = useQuery<User>({
     queryKey: ["/api/user/current"],
   });
 
