@@ -31,10 +31,10 @@ export function AIResponseModal({ plan, isOpen, onClose }: AIResponseModalProps)
           </DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-6" data-testid="ai-response-content">
-          <div className="ai-response rounded-lg p-6 bg-gradient-to-r from-primary/10 to-accent/10 border-l-4 border-primary">
-            <h4 className="text-xl font-semibold mb-2" data-testid="plan-title">{plan.title}</h4>
-            <p className="text-muted-foreground mb-4" data-testid="plan-summary">{plan.summary}</p>
+        <div className="space-y-6 p-6" data-testid="ai-response-content">
+          <div className="ai-response rounded-lg p-4 md:p-6 bg-gradient-to-r from-primary/10 to-accent/10 border-l-4 border-primary">
+            <h4 className="text-lg md:text-xl font-semibold mb-2 break-words" data-testid="plan-title">{plan.title}</h4>
+            <p className="text-muted-foreground mb-4 break-words" data-testid="plan-summary">{plan.summary}</p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               {plan.pricingInr && (

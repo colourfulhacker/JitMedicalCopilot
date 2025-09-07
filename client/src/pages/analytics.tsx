@@ -116,7 +116,7 @@ export default function Analytics() {
           <TabsContent value="revenue" className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card className="p-6" data-testid="revenue-breakdown">
-                <h3 className="text-lg font-semibold mb-6">Revenue Breakdown</h3>
+                <h3 className="text-lg font-semibold mb-6">Current Revenue Breakdown</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between p-3 rounded-lg bg-muted/50">
                     <div className="flex items-center space-x-3">
@@ -159,18 +159,11 @@ export default function Analytics() {
               </Card>
 
               <Card className="p-6" data-testid="revenue-trends">
-                <h3 className="text-lg font-semibold mb-6">6-Month Revenue Trend</h3>
-                <div className="space-y-3">
-                  {revenueData.map((data, index) => (
-                    <div key={data.month} className="flex items-center justify-between p-2">
-                      <span className="text-sm font-medium">{data.month}</span>
-                      <div className="flex items-center space-x-4 text-sm">
-                        <span className="text-red-500">₹{data.healthtech}L</span>
-                        <span className="text-blue-500">₹{data.itdev}L</span>
-                        <span className="font-semibold">₹{data.total}L</span>
-                      </div>
-                    </div>
-                  ))}
+                <h3 className="text-lg font-semibold mb-6">Revenue Analytics</h3>
+                <div className="text-center py-8">
+                  <i className="fas fa-chart-line text-4xl text-muted-foreground mb-4"></i>
+                  <p className="text-muted-foreground">Historical revenue trends will appear here</p>
+                  <p className="text-sm text-muted-foreground">Data will be populated from business metrics</p>
                 </div>
               </Card>
             </div>
@@ -191,93 +184,37 @@ export default function Analytics() {
           <TabsContent value="performance" className="space-y-6">
             <h3 className="text-xl font-semibold">System Performance Metrics</h3>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="performance-metrics">
-              {performanceMetrics.map((metric, index) => (
-                <Card key={index} className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="font-medium">{metric.name}</h4>
-                    <span className={`px-2 py-1 rounded text-xs font-medium ${
-                      metric.status === 'excellent' ? 'bg-emerald-100 text-emerald-800' :
-                      metric.status === 'good' ? 'bg-blue-100 text-blue-800' :
-                      'bg-amber-100 text-amber-800'
-                    }`}>
-                      {metric.status}
-                    </span>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Current:</span>
-                      <span className="font-semibold">{metric.value}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Target:</span>
-                      <span>{metric.target}</span>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
+            <Card className="p-6" data-testid="performance-metrics">
+              <div className="text-center py-8">
+                <i className="fas fa-tachometer-alt text-4xl text-muted-foreground mb-4"></i>
+                <p className="text-muted-foreground">Performance metrics will appear here</p>
+                <p className="text-sm text-muted-foreground">Data will be populated from monitoring systems</p>
+              </div>
+            </Card>
           </TabsContent>
 
           <TabsContent value="clients" className="space-y-6">
             <h3 className="text-xl font-semibold">Client Segment Analysis</h3>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" data-testid="client-segments">
-              {clientInsights.map((segment, index) => (
-                <Card key={index} className="p-6">
-                  <h4 className="font-semibold mb-4">{segment.segment}</h4>
-                  <div className="grid grid-cols-3 gap-4 text-center">
-                    <div>
-                      <p className="text-2xl font-bold text-blue-500">{segment.count}</p>
-                      <p className="text-xs text-muted-foreground">Active Clients</p>
-                    </div>
-                    <div>
-                      <p className="text-2xl font-bold text-emerald-500">{segment.revenue}</p>
-                      <p className="text-xs text-muted-foreground">Monthly Revenue</p>
-                    </div>
-                    <div>
-                      <p className="text-2xl font-bold text-amber-500">{segment.satisfaction}</p>
-                      <p className="text-xs text-muted-foreground">Satisfaction</p>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
+            <Card className="p-6" data-testid="client-segments">
+              <div className="text-center py-8">
+                <i className="fas fa-users text-4xl text-muted-foreground mb-4"></i>
+                <p className="text-muted-foreground">Client insights will appear here</p>
+                <p className="text-sm text-muted-foreground">Data will be populated from CRM systems</p>
+              </div>
+            </Card>
           </TabsContent>
 
           <TabsContent value="projections" className="space-y-6">
-            <h3 className="text-xl font-semibold">2025 Revenue Projections</h3>
+            <h3 className="text-xl font-semibold">Revenue Projections</h3>
             
-            <div className="space-y-4" data-testid="revenue-projections">
-              {projections.map((projection, index) => (
-                <Card key={index} className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="font-semibold">{projection.scenario}</h4>
-                    <span className="text-sm bg-muted px-2 py-1 rounded">
-                      {projection.probability} probability
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-4 gap-4 text-center">
-                    <div>
-                      <p className="text-lg font-bold">{projection.q1}</p>
-                      <p className="text-xs text-muted-foreground">Q1 2025</p>
-                    </div>
-                    <div>
-                      <p className="text-lg font-bold">{projection.q2}</p>
-                      <p className="text-xs text-muted-foreground">Q2 2025</p>
-                    </div>
-                    <div>
-                      <p className="text-lg font-bold">{projection.q3}</p>
-                      <p className="text-xs text-muted-foreground">Q3 2025</p>
-                    </div>
-                    <div>
-                      <p className="text-lg font-bold">{projection.q4}</p>
-                      <p className="text-xs text-muted-foreground">Q4 2025</p>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
+            <Card className="p-6" data-testid="revenue-projections">
+              <div className="text-center py-8">
+                <i className="fas fa-chart-bar text-4xl text-muted-foreground mb-4"></i>
+                <p className="text-muted-foreground">Revenue projections will appear here</p>
+                <p className="text-sm text-muted-foreground">Data will be calculated from historical trends</p>
+              </div>
+            </Card>
           </TabsContent>
 
           <TabsContent value="reports" className="space-y-6">
