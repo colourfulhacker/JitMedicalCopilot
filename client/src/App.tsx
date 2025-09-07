@@ -7,11 +7,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Sidebar } from "@/components/sidebar";
 import Dashboard from "@/pages/dashboard";
 import AIPlanner from "@/pages/ai-planner";
-import HealthTech from "@/pages/healthtech";
-import ITDevelopment from "@/pages/itdev";
-import Analytics from "@/pages/analytics";
-import Compliance from "@/pages/compliance";
-import Communications from "@/pages/communications";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -22,11 +17,6 @@ function Router() {
         <Switch>
           <Route path="/" component={Dashboard} />
           <Route path="/planner" component={AIPlanner} />
-          <Route path="/healthtech" component={HealthTech} />
-          <Route path="/itdev" component={ITDevelopment} />
-          <Route path="/analytics" component={Analytics} />
-          <Route path="/compliance" component={Compliance} />
-          <Route path="/communications" component={Communications} />
           <Route component={NotFound} />
         </Switch>
       </main>

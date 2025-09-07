@@ -5,11 +5,6 @@ import { Button } from "@/components/ui/button";
 const navigation = [
   { name: "Dashboard", href: "/", icon: "fas fa-tachometer-alt" },
   { name: "AI Planner", href: "/planner", icon: "fas fa-lightbulb" },
-  { name: "HealthTech", href: "/healthtech", icon: "fas fa-heartbeat" },
-  { name: "IT Development", href: "/itdev", icon: "fas fa-code" },
-  { name: "Analytics", href: "/analytics", icon: "fas fa-chart-line" },
-  { name: "Compliance", href: "/compliance", icon: "fas fa-shield-alt" },
-  { name: "Communications", href: "/communications", icon: "fas fa-envelope" },
 ];
 
 export function Sidebar() {
