@@ -1,0 +1,95 @@
+MD Co-Pilot – Dual Edition (HealthTech + IT Development)
+
+🎯 Core Idea
+
+An AI-powered MD assistant that generates instant action plans, proposals, pricing models (in INR + USD), compliance reports, and communication drafts for two major verticals:
+	•	HealthTech (Practo-style B2B SaaS for hospitals, labs, pharmacies, doctors, patients)
+	•	IT Development (software projects, client proposals, project feasibility, tech stack decisions, investor decks)
+
+⸻
+
+🧩 Features by Domain
+
+🔹 Common MD Features (Both IT & HealthTech)
+	•	Challenge Input: Select category (HR, Sales, Client, Compliance, Project, Investment) or custom input.
+	•	AI Action Plans: Step-by-step execution roadmap.
+	•	Communication Drafts: Emails, memos, pitch decks, reports.
+	•	Pricing & Revenue Planner: INR + USD output for Indian + global clients.
+	•	Investor & Grant Proposal Generator.
+	•	Dashboard: Track current challenges, pilots, clients, and revenue (INR based).
+
+⸻
+
+🔹 For HealthTech (Practo-Type Business)
+	1.	Hospital/Lab/Pharmacy Onboarding Planner
+	•	Workflow plan + training modules.
+	•	Pricing model: SaaS per hospital, lab, or pharmacy.
+	2.	Doctor/Patient Engagement Strategy
+	•	SMS/WhatsApp/email campaigns.
+	•	Loyalty or cashback programs in INR.
+	3.	Compliance & Data Security Assistant
+	•	NDHM, HIPAA, MeitY cloud compliance checklists.
+	4.	Pilot & City Expansion Roadmap
+	•	Costing & manpower planning for Tier-1, Tier-2 rollout.
+	5.	Health Metrics & ROI Reports
+	•	Patient adoption numbers, revenue per hospital, yearly savings.
+
+⸻
+
+🔹 For IT Development (Custom Software & SaaS)
+	1.	Project Feasibility & Tech Stack Planner
+	•	Client requirement → suggested tech stack, estimated time, cost in INR/USD.
+	2.	Client Proposal & RFP Response Generator
+	•	Auto-draft proposals with milestones, pricing, and delivery guarantees.
+	3.	Code & Architecture Review Assistant
+	•	Upload repo or snippet → get improvements, risks, and documentation.
+	4.	Intern & Hiring Assistant
+	•	Generate JDs, interview questions, and assignment ideas.
+	5.	Outreach & Sales Planner
+	•	Cold email templates for India, US, EU markets.
+	•	ROI-driven pitch decks for IT services.
+
+⸻
+
+📊 Example Use Cases
+
+HealthTech
+	•	Input: “Onboard 10 Delhi hospitals this quarter.”
+→ Output:
+	•	Integration roadmap (Week-by-week).
+	•	Compliance checklist.
+	•	Pricing: ₹25,000/month per hospital = ₹30,00,000 annual recurring revenue.
+
+IT Development
+	•	Input: “US client wants a SaaS CRM built in 6 months.”
+→ Output:
+	•	Feasibility: React + Node + Firebase (6 developers, 5 months).
+	•	Cost: ₹35,00,000 (₹5.8L/month team burn).
+	•	Proposal draft with INR + USD pricing.
+
+⸻
+
+⚙️ Tech Stack
+	•	Frontend: React / Next.js (dashboard).
+	•	Backend: Firebase (storage, auth).
+	•	AI Layer: Gemini API (planning, text generation).
+	•	Integrations:
+	•	GitHub/Jira (IT).
+	•	NDHM/UHI APIs (HealthTech).
+	•	Razorpay/Stripe (INR + USD billing).
+	•	Slack/Teams/Email (communication).
+
+⸻
+
+🚀 MVP Roadmap (90 Days)
+	•	Month 1 – Core System
+	•	Problem input → AI plan output.
+	•	Save challenges + solutions in Firebase.
+	•	INR/USD pricing planner.
+	•	Month 2 – Domain Features
+	•	HealthTech: Hospital onboarding, compliance checker, pilot planner.
+	•	IT: Tech stack planner, client proposal generator.
+	•	Month 3 – Expansion
+	•	Dashboard with MD reports.
+	•	Collaboration: share plans with managers.
+	•	Investor pitch & grant generator.
