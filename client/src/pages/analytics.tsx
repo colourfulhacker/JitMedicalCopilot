@@ -34,36 +34,13 @@ function MetricCard({ title, value, change, icon, color }: MetricCardProps) {
   );
 }
 
-const performanceMetrics = [
-  { name: "API Response Time", value: "145ms", target: "< 200ms", status: "good" },
-  { name: "System Uptime", value: "99.8%", target: "> 99.5%", status: "excellent" },
-  { name: "Customer Satisfaction", value: "4.8/5", target: "> 4.5", status: "excellent" },
-  { name: "Code Coverage", value: "87%", target: "> 80%", status: "good" },
-  { name: "Bug Resolution Time", value: "2.4 days", target: "< 3 days", status: "good" },
-  { name: "Feature Delivery Rate", value: "95%", target: "> 90%", status: "excellent" }
-];
+// Performance metrics will be populated from real monitoring data when available
 
-const revenueData = [
-  { month: "Jul 2024", healthtech: 24, itdev: 14, total: 38 },
-  { month: "Aug 2024", healthtech: 26, itdev: 15, total: 41 },
-  { month: "Sep 2024", healthtech: 27, itdev: 16, total: 43 },
-  { month: "Oct 2024", healthtech: 28, itdev: 16, total: 44 },
-  { month: "Nov 2024", healthtech: 29, itdev: 17, total: 46 },
-  { month: "Dec 2024", healthtech: 29, itdev: 17, total: 46 }
-];
+// Revenue data will be populated from actual business metrics when available
 
-const clientInsights = [
-  { segment: "Large Hospitals (500+ beds)", count: 15, revenue: "₹18.5L", satisfaction: 4.9 },
-  { segment: "Medium Hospitals (100-500 beds)", count: 27, revenue: "₹9.8L", satisfaction: 4.7 },
-  { segment: "Corporate Clients", count: 12, revenue: "₹12.2L", satisfaction: 4.8 },
-  { segment: "Startups & SMEs", count: 8, revenue: "₹4.5L", satisfaction: 4.6 }
-];
+// Client insights will be populated from CRM and customer data when available
 
-const projections = [
-  { scenario: "Conservative Growth", q1: "₹48L", q2: "₹52L", q3: "₹55L", q4: "₹58L", probability: "85%" },
-  { scenario: "Moderate Growth", q1: "₹52L", q2: "₹58L", q3: "₹64L", q4: "₹70L", probability: "65%" },
-  { scenario: "Aggressive Growth", q1: "₹58L", q2: "₹68L", q3: "₹78L", q4: "₹88L", probability: "35%" }
-];
+// Revenue projections will be calculated from historical data and market analysis when available
 
 export default function Analytics() {
   const { data: user } = useQuery<User>({
@@ -105,7 +82,7 @@ export default function Analytics() {
           <MetricCard
             title="Active Clients"
             value={metrics?.activeClients.toString() || "Loading..."}
-            change="+8 new this week"
+            change="Total active"
             icon="fas fa-users"
             color="text-blue-500"
           />
@@ -113,7 +90,7 @@ export default function Analytics() {
           <MetricCard
             title="AI Plans Generated"
             value={metrics?.plansGenerated.toString() || "Loading..."}
-            change="+23 today"
+            change="This month"
             icon="fas fa-brain"
             color="text-amber-500"
           />
@@ -121,7 +98,7 @@ export default function Analytics() {
           <MetricCard
             title="Compliance Score"
             value={metrics ? `${metrics.complianceScore}%` : "Loading..."}
-            change="Excellent status"
+            change="Current score"
             icon="fas fa-shield-alt"
             color="text-emerald-500"
           />
