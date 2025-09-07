@@ -72,7 +72,7 @@ export function AIPlanner({ onPlanGenerated }: AIPlannerProps) {
             <i className="fas fa-robot text-primary"></i>
           </div>
           <div>
-            <h3 className="text-lg font-semibold" data-testid="ai-planner-title">AI Business Planner</h3>
+            <h3 className="text-lg font-semibold text-gradient" data-testid="ai-planner-title">AI Business Planner</h3>
             <p className="text-sm text-muted-foreground" data-testid="ai-planner-subtitle">Smart Business Planning</p>
           </div>
         </div>
@@ -85,10 +85,10 @@ export function AIPlanner({ onPlanGenerated }: AIPlannerProps) {
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`p-3 rounded-lg border text-sm transition-colors text-left ${
+                className={`category-button p-3 rounded-lg text-sm transition-all text-left ${
                   selectedCategory === category.id
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "border-border hover:bg-accent"
+                    ? "selected"
+                    : ""
                 }`}
                 data-testid={`category-${category.id}`}
               >
@@ -108,8 +108,8 @@ export function AIPlanner({ onPlanGenerated }: AIPlannerProps) {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             className="w-full resize-none"
-            rows={4}
-            placeholder="e.g., Onboard 15 Delhi hospitals to our HealthTech platform this quarter while ensuring HIPAA compliance..."
+            rows={3}
+            placeholder="Describe your business challenge in detail - e.g., Scale customer acquisition, improve team productivity, ensure regulatory compliance..."
             data-testid="challenge-input"
           />
         </div>
@@ -118,7 +118,7 @@ export function AIPlanner({ onPlanGenerated }: AIPlannerProps) {
         <Button
           onClick={handleGeneratePlan}
           disabled={generatePlanMutation.isPending || !selectedCategory || !description.trim()}
-          className="w-full"
+          className="w-full btn-primary interactive-hover"
           data-testid="generate-plan-btn"
         >
           {generatePlanMutation.isPending ? (
