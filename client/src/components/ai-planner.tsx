@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { CHALLENGE_CATEGORIES } from "@/lib/types";
-import type { AiPlan } from "@shared/schema";
+import type { AiPlan, User } from "@shared/schema";
 
 interface AIPlannerProps {
   onPlanGenerated: (plan: AiPlan) => void;
@@ -17,7 +17,7 @@ export function AIPlanner({ onPlanGenerated }: AIPlannerProps) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  const { data: user } = useQuery({
+  const { data: user } = useQuery<User>({
     queryKey: ["/api/user/current"],
   });
 

@@ -17,7 +17,7 @@ export function Sidebar() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <aside className="fixed left-0 top-0 z-40 h-screen w-64 glass-effect border-r border-border transition-transform">
+    <aside className="fixed left-0 top-0 z-40 h-screen w-64 glass-effect border-r border-border transition-transform lg:translate-x-0 -translate-x-full lg:static lg:h-auto">
       <div className="flex h-full flex-col px-6 py-8">
         {/* Logo and Title */}
         <div className="mb-8">

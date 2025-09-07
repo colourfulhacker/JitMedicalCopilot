@@ -7,7 +7,7 @@ import { BusinessVerticals } from "@/components/business-verticals";
 import { RevenueAnalytics } from "@/components/revenue-analytics";
 import { CommunicationTools } from "@/components/communication-tools";
 import { AIResponseModal } from "@/components/ai-response-modal";
-import type { AiPlan } from "@shared/schema";
+import type { AiPlan, User } from "@shared/schema";
 
 interface RecentPlanCardProps {
   plan: AiPlan;
@@ -24,7 +24,7 @@ function RecentPlanCard({ plan, onClick }: RecentPlanCardProps) {
     return { icon: "fas fa-code", color: "text-blue-500", vertical: "IT Development" };
   };
 
-  const verticalInfo = getVerticalInfo(plan.challengeId);
+  const verticalInfo = getVerticalInfo(plan.challengeId || undefined);
   const timeAgo = plan.createdAt ? new Date(plan.createdAt).toLocaleDateString() : "Recently";
 
   return (
@@ -64,7 +64,7 @@ export default function Dashboard() {
   const [selectedPlan, setSelectedPlan] = useState<AiPlan | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { data: user } = useQuery({
+  const { data: user } = useQuery<User>({
     queryKey: ["/api/user/current"],
   });
 
